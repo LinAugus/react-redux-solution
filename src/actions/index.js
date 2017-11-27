@@ -2,32 +2,31 @@
  * action 类型
  */
 
-export const ADD_TODO = 'ADD_TODO';
-export const COMPLETE_TODO = 'COMPLETE_TODO';
-export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER'
-
-/*
- * 其它的常量
- */
-
-export const VisibilityFilters = {
-    SHOW_ALL: 'SHOW_ALL',
-    SHOW_COMPLETED: 'SHOW_COMPLETED',
-    SHOW_ACTIVE: 'SHOW_ACTIVE'
-};
-
+export const GET_LIST = 'GET_LIST';
+export const FETCH_DATA_START = 'FETCH_DATA_START';
+export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS'
 /*
  * action 创建函数
  */
 
-export function addTodo(text) {
-    return { type: ADD_TODO, text }
+function fetchDataStart() {
+    return {
+        type: 'FETCH_DATA_START'
+    };
 }
 
-export function completeTodo(index) {
-    return { type: COMPLETE_TODO, index }
+function fetchDataSuccess(payload) {
+    return {
+        type: 'FETCH_DATA_SUCCESS',
+        payload
+    }
 }
 
-export function setVisibilityFilter(filter) {
-    return { type: SET_VISIBILITY_FILTER, filter }
+export function getList(payload) {
+    return (dispatch) => {
+        dispatch(fetchDataStart());
+        axios.get('https://news-at.zhihu.com/api/4/news/latest').then(res => {
+            dispatch(fetchDataSuccess(res.data));
+        })
+    }
 }
