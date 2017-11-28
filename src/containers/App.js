@@ -1,5 +1,6 @@
 // container
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -16,8 +17,7 @@ class App extends Component {
     }
 
     componentDidMount() {
-        
-        this.props.dispatch(getList());
+        this.props.getList();
     }
 
     render() {
@@ -39,4 +39,11 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(App);
+// bindActionCreators 让组件感知不到redux的存在
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        getList: getList
+    }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -1,3 +1,7 @@
+import * as api from '../api';
+
+
+export const request = api.request;
 
 /*
  * action 类型
@@ -25,24 +29,11 @@ export const fetchDataSuccess = (payload) => {
 
 
 // 异步action
-export const getList = () => dispatch => {
+export const getList = () => async (dispatch) => {
     // 请求开始
     dispatch(fetchDataStart());
-
-    get().then(res => {
-        dispatch(fetchDataSuccess(res));
-    })
-}
-
-
-// api层
-
-function get() {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve({
-                name: 'allin'
-            })
-        }, 1000)
-    })
+    const res = await request();
+    
+    dispatch(fetchDataSuccess(res));
+    
 }

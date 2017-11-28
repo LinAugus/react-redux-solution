@@ -5,18 +5,20 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
 import thunkMiddleware from 'redux-thunk';
-import logMiddleware from 'redux-log';
+import { createLogger } from 'redux-logger';
 
 import App from './containers/App';
 
 import rootReducer from './reducers';
 
-import { getList, fetchDataStart } from './actions';
-
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
-const middleware = [thunkMiddleware]
+const logMiddleware = createLogger({
+    collapsed: true
+})
+
+const middleware = [thunkMiddleware, logMiddleware]
 
 let store = createStore(
     rootReducer, 
@@ -24,9 +26,9 @@ let store = createStore(
     applyMiddleware(...middleware)
 );
 
-store.subscribe(() => {
-    console.log('store refresh', store.getState())
-});
+// store.subscribe(() => {
+//     console.log('store refresh', store.getState())
+// });
 
 ReactDOM.render(
     <Provider store={store}>
