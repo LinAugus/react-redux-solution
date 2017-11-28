@@ -2,12 +2,9 @@ import React, { Component } from 'react';
 
 class Home extends Component {
     render() {
+        console.log('Home', this.props)
         return (
-            <ul>
-                <li>
-                    知乎日报
-                </li>
-            </ul>
+            <p>{this.props.list.name}</p>
         )
     }
 }

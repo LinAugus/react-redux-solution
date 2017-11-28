@@ -1,16 +1,18 @@
 import axios from 'axios';
 
-import {
-    combineReducers
-} from 'redux';
 
-const List = (state={}, action) => {
-    switch(action.type) {
-        case getList:
-            
-        default:
-            return state;
+import { fetchDataStart, fetchDataSuccess } from '../actions';
+
+export const GET_LIST = 'GET_LIST';
+
+export const getList = () => {
+    return (dispatch) => {
+        dispatch(fetchDataStart());
+        axios.get('https://news-at.zhihu.com/api/4/news/latest').then(res => {
+            console.log(res);
+            dispatch(fetchDataSuccess({
+                name: 'allin'
+            }));
+        })
     }
 }
-
-export default combineReducers({List});

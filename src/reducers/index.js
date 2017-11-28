@@ -2,10 +2,22 @@ import {
     combineReducers
 } from 'redux'
 
-import api from '../api';
+import { FETCH_START, FETCH_SUCCESS } from '../actions'
+
+function list(state={}, action) {
+    switch(action.type) {
+    case FETCH_START:
+        return state;
+    case FETCH_SUCCESS:
+        console.log('work2', action)
+        return Object.assign({}, state, action.paylaod);
+    default:
+        return state;
+    }
+}
 
 const store = combineReducers({
-    api
+    list
 })
 
-export default api
+export default store

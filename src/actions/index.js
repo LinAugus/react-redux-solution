@@ -1,32 +1,52 @@
+
 /*
  * action 类型
  */
 
-export const GET_LIST = 'GET_LIST';
-export const FETCH_DATA_START = 'FETCH_DATA_START';
-export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS'
+export const FETCH_START = 'FETCH_START';
+export const FETCH_SUCCESS = 'FETCH_SUCCESS';
+
 /*
  * action 创建函数
  */
 
-function fetchDataStart() {
+export const fetchDataStart = (payload)  =>{
     return {
-        type: 'FETCH_DATA_START'
-    };
-}
+        type: FETCH_START,
+        payload
+    }
+};
 
-function fetchDataSuccess(payload) {
+export const fetchDataSuccess = (payload) => {
+    console.log('work', payload)
     return {
-        type: 'FETCH_DATA_SUCCESS',
+        type: FETCH_SUCCESS,
         payload
     }
 }
 
-export function getList(payload) {
-    return (dispatch) => {
-        dispatch(fetchDataStart());
-        axios.get('https://news-at.zhihu.com/api/4/news/latest').then(res => {
-            dispatch(fetchDataSuccess(res.data));
-        })
-    }
+export const getList = () => dispatch => {
+    // let res = await get();
+    // dispatch(fetchDataSuccess(res))
+    dispatch({
+        type: FETCH_START
+    });
+    get().then(res => {
+        dispatch(fetchDataSuccess(res));
+    }).catch(err => {
+        dispatch(fetchDataSuccess(err));
+    })
+}
+
+
+// api
+
+function get() {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve({
+                name: 'allin'
+            })
+        }, 1000)
+    })
 }
