@@ -2,8 +2,13 @@ import {
     combineReducers
 } from 'redux'
 
-import { FETCH_START, FETCH_SUCCESS } from '../actions'
+import { FETCH_START, FETCH_SUCCESS } from '../actions/list'
 
+/**
+ * model: list curd
+ * @param {*} state 
+ * @param {*} action 
+ */
 function list(state={}, action) {
     switch(action.type) {
     case FETCH_START:
@@ -15,6 +20,9 @@ function list(state={}, action) {
     }
 }
 
+/**
+ * reducer compose
+ */
 const store = combineReducers({
     list
 })

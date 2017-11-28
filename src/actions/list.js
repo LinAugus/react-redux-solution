@@ -1,17 +1,15 @@
+// api 服务
 import * as api from '../api';
 
-
-export const request = api.request;
-
 /*
- * action 类型
+ * action constants defined
  */
 
 export const FETCH_START = 'FETCH_START';
 export const FETCH_SUCCESS = 'FETCH_SUCCESS';
 
 /*
- * action 创建函数
+ * action create
  */
 
 export const fetchDataStart = () =>{
@@ -27,13 +25,14 @@ export const fetchDataSuccess = (payload) => {
     }
 }
 
-
-// 异步action
+/**
+ * async action create
+ */
 export const getList = () => async (dispatch) => {
     // 请求开始
     dispatch(fetchDataStart());
-    const res = await request();
-    
+    const res = await api.request();
+    // 请求成功
     dispatch(fetchDataSuccess(res));
     
 }

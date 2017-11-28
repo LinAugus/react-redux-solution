@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { getList } from '../actions';
+import { getList } from '../actions/list';
 
 import Home from '../pages/Home';
 
