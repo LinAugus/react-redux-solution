@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { fetchDataStart } from '../actions';
+import { getList } from '../actions';
 
 import Home from '../pages/Home';
 
@@ -17,11 +17,10 @@ class App extends Component {
 
     componentDidMount() {
         
-        this.props.dispatch(fetchDataStart({name: '123'}));
+        this.props.dispatch(getList());
     }
 
     render() {
-        console.log('##', this.props)
         const { list } = this.props;
         return (
             <div className="App">

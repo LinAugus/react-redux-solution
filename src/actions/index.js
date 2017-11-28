@@ -10,36 +10,32 @@ export const FETCH_SUCCESS = 'FETCH_SUCCESS';
  * action 创建函数
  */
 
-export const fetchDataStart = (payload)  =>{
+export const fetchDataStart = () =>{
     return {
-        type: FETCH_START,
-        payload
+        type: FETCH_START
     }
 };
 
 export const fetchDataSuccess = (payload) => {
-    console.log('work', payload)
     return {
         type: FETCH_SUCCESS,
         payload
     }
 }
 
+
+// 异步action
 export const getList = () => dispatch => {
-    // let res = await get();
-    // dispatch(fetchDataSuccess(res))
-    dispatch({
-        type: FETCH_START
-    });
+    // 请求开始
+    dispatch(fetchDataStart());
+
     get().then(res => {
         dispatch(fetchDataSuccess(res));
-    }).catch(err => {
-        dispatch(fetchDataSuccess(err));
     })
 }
 
 
-// api
+// api层
 
 function get() {
     return new Promise((resolve) => {

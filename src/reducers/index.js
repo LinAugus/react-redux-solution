@@ -9,8 +9,7 @@ function list(state={}, action) {
     case FETCH_START:
         return state;
     case FETCH_SUCCESS:
-        console.log('work2', action)
-        return Object.assign({}, state, action.paylaod);
+        return Object.assign({}, state, action.payload);
     default:
         return state;
     }
