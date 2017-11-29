@@ -2,23 +2,23 @@ import {
     combineReducers
 } from 'redux'
 
-import { FETCH_START, FETCH_SUCCESS } from '../actions/list'
+import { createReducer } from 'redux-action';
+
+import { fetchDataStart, fetchDataSuccess} from '../actions/list'
 
 /**
  * model: list curd
  * @param {*} state 
  * @param {*} action 
  */
-function list(state={}, action) {
-    switch(action.type) {
-    case FETCH_START:
-        return state;
-    case FETCH_SUCCESS:
-        return Object.assign({}, state, action.payload);
-    default:
-        return state;
-    }
-}
+
+let state = {};
+
+const list = createReducer(state, {
+    [fetchDataStart]: (state) => ({state}),
+    [fetchDataSuccess]: (payload) => (Object.assign({}, state, payload))
+})
+
 
 /**
  * reducer compose
