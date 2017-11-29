@@ -7,12 +7,23 @@ class Home extends Component {
         list: PropTypes.object.isRequired
     }
 
+
+    renderList = () => {
+        return this.props.list.stories && this.props.list.stories.map((item, idx) => (
+            <li key={idx}>{item.title}</li>
+        ))
+    }
+
     render() {
         return (
-            <p>{this.props.list.name}</p>
+            <div>
+                <p>{this.props.list.date}</p>
+                <ul>
+                    {this.renderList()} 
+                </ul>
+            </div>
         )
     }
 }
-
 
 export default Home;

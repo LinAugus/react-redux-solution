@@ -1,12 +1,10 @@
-import json from '../mock/index.json';
-console.log(json)
+import mockdata from '../mock/index.js';
+
 
 export const request = () => {
     return new Promise((resolve) => {
         setTimeout(() => {
-            resolve({
-                name: 'allin'
-            })
+            resolve(mockdata)
         }, 1000)
     })
 }

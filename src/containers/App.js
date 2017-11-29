@@ -13,7 +13,8 @@ import './App.css';
 class App extends Component {
 
     static PropTypes = {
-        list: PropTypes.object.isRequired
+        list: PropTypes.object.isRequired,
+        getList: PropTypes.func.isRequired
     }
 
     componentDidMount() {
@@ -26,7 +27,7 @@ class App extends Component {
             <div className="App">
                 <header>
                     <p>react-redux-solution</p>
-                    <Home list={list}/>
+                    <Home list={list} />
                 </header>
             </div>
         );

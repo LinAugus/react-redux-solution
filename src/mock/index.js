@@ -1,5 +1,5 @@
 /* https://news-at.zhihu.com/api/4/news/latest */
-{
+module.exports = {
     "date": "20171129",
     "stories": [
         {
