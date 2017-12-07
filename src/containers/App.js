@@ -7,19 +7,21 @@ import './App.css';
 import {
     BrowserRouter as Router,
     Route,
-    Link
+    Link,
+    Switch
 } from 'react-router-dom';
 
-const About = () => (
-    <div>
-        About
-    </div>
-);
+const About = (params) => {
+    console.log(params)
+    return (
+        <div>
+            About
+        </div>
+    )
+}
 
-const Child = ({match}) => (
-    <div>
-        ID: {match.params.id}
-    </div>
+const NotFound = () => (
+    <div>404</div>
 )
 
 class App extends Component {
@@ -28,18 +30,21 @@ class App extends Component {
         return (
             <div className="App">
                 <header>
-                    react16-react-router4
+                    switch component && 404 
                 </header>
                 <Router>
                     <div>
                         <ul>
                             <li><Link to="/">Home</Link></li>
                             <li><Link to="/about">About</Link></li>
+                            <li><Link to="/post">Post</Link></li>
                         </ul>
                         <hr />
-                        <Route exact path="/" component={Home} />
-                        {/* <Route path="/about" component={About} /> */}
-                        <Route path="/:id" component={Child} />
+                        <Switch>
+                            <Route exact path="/" component={Home} />
+                            <Route path="/about" component={About} />
+                            <Route component={NotFound} />
+                        </Switch>
                     </div>
                 </Router>
             </div>
