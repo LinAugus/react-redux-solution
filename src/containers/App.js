@@ -16,6 +16,12 @@ const About = () => (
     </div>
 );
 
+const Child = ({match}) => (
+    <div>
+        ID: {match.params.id}
+    </div>
+)
+
 class App extends Component {
 
     render() {
@@ -32,7 +38,8 @@ class App extends Component {
                         </ul>
                         <hr />
                         <Route exact path="/" component={Home} />
-                        <Route path="/about" component={About} />
+                        {/* <Route path="/about" component={About} /> */}
+                        <Route path="/:id" component={Child} />
                     </div>
                 </Router>
             </div>
