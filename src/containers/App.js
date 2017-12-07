@@ -1,50 +1,43 @@
 // container
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-
-import { getList } from '../actions/list';
-
 import Home from '../pages/Home';
 
 import './App.css';
 
+import {
+    BrowserRouter as Router,
+    Route,
+    Link
+} from 'react-router-dom';
+
+const About = () => (
+    <div>
+        About
+    </div>
+);
+
 class App extends Component {
 
-    static PropTypes = {
-        list: PropTypes.object.isRequired,
-        getList: PropTypes.func.isRequired
-    }
-
-    componentDidMount() {
-        this.props.getList();
-    }
-
     render() {
-        const { list } = this.props;
         return (
             <div className="App">
                 <header>
-                    <p>react-redux-solution</p>
-                    <Home list={list} />
+                    react16-react-router4
                 </header>
+                <Router>
+                    <div>
+                        <ul>
+                            <li><Link to="/">Home</Link></li>
+                            <li><Link to="/about">About</Link></li>
+                        </ul>
+                        <hr />
+                        <Route exact path="/" component={Home} />
+                        <Route path="/about" component={About} />
+                    </div>
+                </Router>
             </div>
         );
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        list: state.list
-    }
-}
-
-// bindActionCreators 让组件感知不到redux的存在
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({
-        getList: getList
-    }, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
